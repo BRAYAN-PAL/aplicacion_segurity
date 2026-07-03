@@ -1,0 +1,52 @@
+<ion-content [fullscreen]="true" class="worker-content">
+  <app-header [showMenuButton]="true" title="SOLICITUDES">
+    <ion-button fill="clear" (click)="abrirNotificaciones()">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </ion-button>
+  </app-header>
+
+  <div class="section-card">
+    <p class="section-title">Nueva solicitud</p>
+    <div class="form-row">
+      <label>Tipo de solicitud</label>
+      <select [(ngModel)]="tipo">
+        <option value="cambio_turno">Cambio de turno</option>
+        <option value="permiso">Permiso personal</option>
+        <option value="vacaciones">Vacaciones</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label>Fecha inicio</label>
+      <input type="date" [(ngModel)]="fechaInicio" />
+    </div>
+    <div class="form-row">
+      <label>Fecha fin</label>
+      <input type="date" [(ngModel)]="fechaFin" />
+    </div>
+    <div class="form-row">
+      <label>Motivo / Nota</label>
+      <textarea rows="3" [(ngModel)]="motivo" placeholder="Describe brevemente tu solicitud..."></textarea>
+    </div>
+    <button class="primary-btn" (click)="enviarSolicitud()" [disabled]="isBusy">Enviar solicitud</button>
+  </div>
+
+  <div class="section-card">
+    <p class="section-title">Historial de solicitudes</p>
+    <div class="history-item" *ngFor="let item of historial">
+      <div>
+        <p class="history-title">{{ item.tipo }}</p>
+        <p class="history-sub">
+          Registro: {{ item.created_at || '-' }}
+        </p>
+        <p class="history-sub">
+          {{ item.fecha_inicio || '-' }}
+          <span *ngIf="item.fecha_fin"> - {{ item.fecha_fin }}</span>
+        </p>
+      </div>
+      <span class="status" [class.pending]="item.estado === 'pendiente'" [class.approved]="item.estado === 'aprobada'" [class.rejected]="item.estado === 'rechazada'">
+        {{ item.estado || 'pendiente' }}
+      </span>
+      <button class="delete-btn" (click)="eliminarSolicitud(item)">Eliminar</button>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,40 @@
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 14px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  background: linear-gradient(
+    135deg,
+    rgba(248, 81, 73, 0.26),
+    rgba(22, 27, 34, 0.98)
+  );
+
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(48, 54, 61, 0.45);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+
+  h1 {
+    margin: 0;
+    flex: 1;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 800;
+    color: white;
+  }
+
+  ion-menu-button,
+  ion-back-button {
+    color: white;
+  }
+
+  .header-actions {
+    min-width: 40px;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

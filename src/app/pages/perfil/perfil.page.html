@@ -1,0 +1,66 @@
+<ion-content [fullscreen]="false" class="perfil-content">
+
+  <app-header [showMenuButton]="true" title="PERFIL">
+  </app-header>
+
+  <div class="perfil-shell">
+
+    <section class="hero-card">
+      <div class="photo-wrap">
+        <ion-avatar class="photo">
+          <img *ngIf="profilePhoto; else placeholderPhoto" [src]="profilePhoto" [alt]="displayName" />
+          <ng-template #placeholderPhoto>
+            <span class="photo-fallback">{{ displayName.charAt(0) }}</span>
+          </ng-template>
+        </ion-avatar>
+
+        <ion-button fill="solid" size="small" shape="round" class="photo-action" (click)="showPhotoTip()">
+          <ion-icon slot="start" name="camera-outline"></ion-icon>
+          Foto
+        </ion-button>
+      </div>
+
+      <h1>{{ displayName }}</h1>
+      <h2>{{ displayPosition }}</h2>
+      <p class="location">{{ displayLocation }}</p>
+
+      <div class="profile-meta">
+        <div>
+          <span>Correo</span>
+          <strong>{{ email }}</strong>
+        </div>
+
+        <div>
+          <span>Rol</span>
+          <strong>{{ roleLabel }}</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="actions-card">
+      <button type="button" class="action-row" (click)="openEditProfile()">
+        <ion-icon name="person-outline"></ion-icon>
+        <div>
+          <p>Editar perfil</p>
+          <span>Datos personales y foto</span>
+        </div>
+        <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+      </button>
+
+      <button type="button" class="action-row" (click)="openTerms()">
+        <ion-icon name="document-text-outline"></ion-icon>
+        <div>
+          <p>Términos y condiciones</p>
+          <span>Información legal de la app</span>
+        </div>
+        <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+      </button>
+    </section>
+
+    <ion-button expand="block" class="logout-button" (click)="logout()">
+      Cerrar sesión
+    </ion-button>
+
+  </div>
+
+</ion-content>

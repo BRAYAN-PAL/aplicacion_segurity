@@ -1,0 +1,13 @@
+<div class="page-header">
+  <ion-menu-button *ngIf="showMenuButton" menu="main-menu" class="menu-trigger">
+  </ion-menu-button>
+
+  <ion-back-button *ngIf="backButton" [defaultHref]="backButton">
+  </ion-back-button>
+
+  <h1>{{ title }}</h1>
+
+  <div class="header-actions">
+    <ng-content></ng-content>
+  </div>
+</div>

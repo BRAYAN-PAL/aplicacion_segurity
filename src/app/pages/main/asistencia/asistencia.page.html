@@ -1,0 +1,68 @@
+<ion-content [fullscreen]="true" class="asistencia-content">
+  <app-header [showMenuButton]="true" title="ASISTENCIAS">
+    <ion-button fill="clear" (click)="openNotifications()">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </ion-button>
+  </app-header>
+
+  <br>
+
+  <div class="scan-card">
+    <div class="scan-circle">
+      <ion-icon name="qr-code-outline"></ion-icon>
+    </div>
+    <p class="scan-title">Registrar marcacion</p>
+    <p class="scan-subtitle">Toca para escanear QR o usar GPS</p>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-box green">
+      <span class="stat-value">22</span>
+      <span class="stat-label">Presentes hoy</span>
+    </div>
+    <div class="stat-box red">
+      <span class="stat-value">1</span>
+      <span class="stat-label">Faltas</span>
+    </div>
+    <div class="stat-box yellow">
+      <span class="stat-value">1</span>
+      <span class="stat-label">Tardanzas</span>
+    </div>
+    <div class="stat-box blue">
+      <span class="stat-value">91%</span>
+      <span class="stat-label">Puntualidad</span>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <h3>Marcaciones de hoy</h3>
+    <span>Ver todas</span>
+  </div>
+
+  <div class="checkin-list">
+    <div class="checkin-item">
+      <div class="agent-avatar red">CM</div>
+      <div class="checkin-info">
+        <p class="agent-name">Carlos Medina</p>
+        <p class="agent-role">Entrada 08:03 · QR · Central</p>
+      </div>
+      <span class="pill green">08:03</span>
+    </div>
+    <div class="checkin-item">
+      <div class="agent-avatar purple">LP</div>
+      <div class="checkin-info">
+        <p class="agent-name">Luis Paredes</p>
+        <p class="agent-role">Entrada 08:18 · GPS · Sur</p>
+      </div>
+      <span class="pill yellow">08:18</span>
+    </div>
+    <div class="checkin-item">
+      <div class="agent-avatar blue">JT</div>
+      <div class="checkin-info">
+        <p class="agent-name">Jorge Torres</p>
+        <p class="agent-role">Entrada 08:01 · QR · Norte</p>
+      </div>
+      <span class="pill green">08:01</span>
+    </div>
+  </div>
+</ion-content>

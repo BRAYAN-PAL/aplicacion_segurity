@@ -1,0 +1,35 @@
+<ion-content [fullscreen]="true" class="worker-content">
+  <app-header [showMenuButton]="true" title="INICIO">
+    <ion-button fill="clear" (click)="openNotifications()">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </ion-button>
+  </app-header>
+
+    <div class="greeting-card">
+      <p class="greeting-sub">Buenos días,</p>
+      <h1 class="greeting-name">{{ nombreUsuario }}</h1>
+      <p class="greeting-note">Aquí tienes un resumen de tu jornada de hoy.</p>
+    </div>
+
+  <div class="section-card">
+    <p class="section-title">Turno actual</p>
+    <p class="section-sub">{{ shiftLabel }}</p>
+    <p class="section-sub" *ngIf="shiftStatus">{{ shiftStatus }}</p>
+  </div>
+
+  <div class="scan-card" (click)="marcarSalida()">
+    <div class="scan-circle">
+      <ion-icon name="finger-print-outline"></ion-icon>
+    </div>
+    <p class="scan-title">Marcar salida</p>
+    <p class="scan-subtitle">Toca para finalizar turno</p>
+  </div>
+<br>
+  <div class="scan-card" (click)="marcarEntrada()">
+    <div class="scan-circle">
+      <ion-icon name="ellipse-outline"></ion-icon>
+    </div>
+    <p class="scan-title">Marcar asistencia</p>
+    <p class="scan-subtitle">Toca para registrar tu entrada</p>
+  </div>
+</ion-content>

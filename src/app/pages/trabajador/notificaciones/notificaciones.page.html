@@ -1,0 +1,23 @@
+<ion-content [fullscreen]="true" class="notifications-content">
+  <div class="notifications-shell">
+    <app-header [showMenuButton]="true" title="NOTIFICACIONES">
+  </app-header>
+
+    <div class="notifications-list">
+      <div class="notification-card" *ngFor="let n of notifications">
+        <div class="notification-main">
+          <h3>{{ n.titulo }}</h3>
+          <p>{{ n.mensaje }}</p>
+          <small>{{ n.created_at | date:'short' }}</small>
+        </div>
+        <ion-button size="small" fill="solid" class="read-btn" (click)="markRead(n)" [disabled]="n.leida">
+          {{ n.leida ? 'Leída' : 'Marcar leída' }}
+        </ion-button>
+      </div>
+
+      <div class="empty-state" *ngIf="notifications.length === 0">
+        No hay notificaciones para mostrar.
+      </div>
+    </div>
+  </div>
+</ion-content>

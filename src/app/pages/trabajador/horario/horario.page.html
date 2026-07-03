@@ -1,0 +1,29 @@
+<ion-content [fullscreen]="true" class="worker-content">
+  <app-header [showMenuButton]="true" title="HORARIOS">
+    <ion-button fill="clear" (click)="abrirNotificaciones()">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </ion-button>
+  </app-header>
+
+  <div class="section-card">
+    <p class="section-title">{{ weekLabel }}</p>
+    <div class="calendar-strip">
+      <div class="day">LUN<br><span>23</span></div>
+      <div class="day active">MAR<br><span>24</span></div>
+      <div class="day">MIE<br><span>25</span></div>
+      <div class="day">JUE<br><span>26</span></div>
+      <div class="day">VIE<br><span>27</span></div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <p class="section-title">Proximos turnos</p>
+    <div class="shift-card" *ngFor="let shift of shifts">
+      <div>
+        <p class="shift-title">{{ shift.sede || 'Sede' }}</p>
+        <p class="shift-sub">{{ shift.fecha }} · {{ shift.inicio }} - {{ shift.fin }}</p>
+      </div>
+      <span class="shift-time">{{ shift.inicio }} - {{ shift.fin }}</span>
+    </div>
+  </div>
+</ion-content>

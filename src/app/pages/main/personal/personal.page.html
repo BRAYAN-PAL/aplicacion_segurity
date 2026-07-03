@@ -1,0 +1,109 @@
+<ion-content [fullscreen]="true" class="personal-content">
+  <app-header [showMenuButton]="true" title="PERSONAL">
+    <ion-button fill="clear" (click)="openNotifications()">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </ion-button>
+  </app-header>
+
+  <div class="search-box">
+    <ion-icon name="search-outline"></ion-icon>
+    <input type="text" placeholder="Buscar agente..." [(ngModel)]="search" />
+  </div>
+
+  <div class="chip-row">
+    <button class="chip active">Todos</button>
+    <button class="chip">Activos</button>
+    <button class="chip">Supervisores</button>
+  </div>
+
+  <div class="agent-list">
+    <div
+      class="agent-item"
+      *ngFor="let emp of filtered"
+      (click)="selectEmployee(emp)"
+      [class.selected]="selectedEmployee?.id === emp.id"
+    >
+      <div class="agent-avatar">{{ initials(emp.nombre) }}</div>
+      <div class="agent-info">
+        <p class="agent-name">{{ emp.nombre }}</p>
+        <p class="agent-role">
+          {{ emp.puesto || 'Agente' }} · {{ emp.sede || 'Sin sede' }}
+        </p>
+      </div>
+      <span class="status" [ngClass]="statusClass(emp)"
+        >{{ statusLabel(emp) }}</span
+      >
+    </div>
+  </div>
+
+  <div class="requests-panel" *ngIf="selectedEmployee">
+    <div class="requests-header">
+      <div>
+        <p class="requests-title">
+          Solicitudes de {{ selectedEmployee.nombre }}
+        </p>
+        <p class="requests-subtitle">
+          Revisa, aprueba o rechaza manteniendo el historial visible.
+        </p>
+      </div>
+      <span class="requests-count"
+        >{{ employeeRequests.length }} solicitudes</span
+      >
+    </div>
+
+    <div class="request-item" *ngFor="let request of employeeRequests">
+      <div class="request-main">
+        <div class="request-topline">
+          <p class="request-type">{{ request.tipo }}</p>
+          <span class="request-status" [ngClass]="requestStateClass(request)"
+            >{{ requestStateLabel(request) }}</span
+          >
+        </div>
+        <p class="request-meta">
+          Registro: {{ formatCreatedAt(request.created_at) }}
+        </p>
+        <p class="request-reason">{{ request.motivo || 'Sin descripción' }}</p>
+        <p
+          class="request-range"
+          *ngIf="request.fecha_inicio || request.fecha_fin"
+        >
+          {{ request.fecha_inicio || '-' }}
+          <span *ngIf="request.fecha_fin"> - {{ request.fecha_fin }}</span>
+        </p>
+      </div>
+
+      <div class="request-actions always">
+        <button
+          class="action-btn approve"
+          (click)="approveRequest(request); $event.stopPropagation()"
+          [disabled]="updatingRequestId === request.id"
+          *ngIf="request.estado === 'pendiente'"
+        >
+          Aprobar
+        </button>
+        <button
+          class="action-btn reject"
+          (click)="rejectRequest(request); $event.stopPropagation()"
+          [disabled]="updatingRequestId === request.id"
+          *ngIf="request.estado === 'pendiente'"
+        >
+          Rechazar
+        </button>
+        <button
+          class="action-btn delete"
+          (click)="deleteRequest(request); $event.stopPropagation()"
+          [disabled]="updatingRequestId === request.id"
+        >
+          Eliminar
+        </button>
+      </div>
+    </div>
+
+    <div
+      class="empty-state"
+      *ngIf="!loadingRequests && employeeRequests.length === 0"
+    >
+      Este trabajador todavía no tiene solicitudes.
+    </div>
+  </div>
+</ion-content>

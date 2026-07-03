@@ -1,0 +1,57 @@
+<ion-app>
+  <ion-menu
+    *ngIf="isAuthenticated"
+    menuId="main-menu"
+    contentId="main-content"
+    type="overlay"
+  >
+    <ion-header class="menu-shell-header">
+      <ion-toolbar>
+        <ion-title>Menú</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="menu-shell-content">
+      <div class="menu-layout">
+        <div class="menu-profile">
+          <ion-avatar class="menu-avatar">
+            <img
+              *ngIf="profilePhoto; else defaultAvatar"
+              [src]="profilePhoto"
+              alt="Foto de perfil"
+            />
+            <ng-template #defaultAvatar>
+              <ion-icon name="person-circle-outline"></ion-icon>
+            </ng-template>
+          </ion-avatar>
+
+          <div class="menu-profile-text">
+            <h2>{{ displayName }}</h2>
+            <p>{{ displayPosition }}</p>
+            <span>{{ displayLocation }}</span>
+          </div>
+
+          <div class="menu-role-chip">{{ displayRole }}</div>
+        </div>
+
+        <ion-list lines="none" class="menu-section menu-items">
+          <ion-menu-toggle autoHide="true" *ngFor="let item of roleMenuItems">
+            <ion-item button [routerLink]="item.route" routerDirection="root">
+              <ion-icon [name]="item.icon" slot="start"></ion-icon>
+              <ion-label>{{ item.label }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+
+        <div class="menu-footer">
+          <ion-item button (click)="confirmLogout()" class="logout-item">
+            <ion-icon name="log-out-outline" slot="start"></ion-icon>
+            <ion-label>Cerrar sesión</ion-label>
+          </ion-item>
+        </div>
+      </div>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+</ion-app>

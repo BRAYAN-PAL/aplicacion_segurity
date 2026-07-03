@@ -1,0 +1,131 @@
+ion-menu {
+  --width: 320px;
+}
+
+.menu-shell-header ion-toolbar {
+  --background: #161b22;
+  --color: #fff;
+}
+
+.menu-shell-content {
+  --background: #0d1117;
+  color: #fff;
+}
+
+.menu-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.menu-profile {
+  margin: 16px;
+  padding: 18px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(248, 81, 73, 0.16), rgba(22, 27, 34, 0.96));
+  border: 1px solid rgba(248, 81, 73, 0.22);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+}
+
+.menu-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #30363d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img,
+  ion-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    font-size: 64px;
+    color: #c9d1d9;
+  }
+}
+
+.menu-profile-text {
+  flex: 1;
+
+  h2 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 800;
+  }
+
+  p {
+    margin: 4px 0 0;
+    color: #c9d1d9;
+    font-size: 0.84rem;
+  }
+
+  span {
+    display: block;
+    margin-top: 2px;
+    color: #8b949e;
+    font-size: 0.76rem;
+  }
+}
+
+.menu-role-chip {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(248, 81, 73, 0.15);
+  border: 1px solid rgba(248, 81, 73, 0.35);
+  color: #ffb4ae;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.menu-section {
+  margin: 0 8px 12px;
+  background: transparent;
+  flex: 1;
+}
+
+.menu-items {
+  margin-top: 4px;
+}
+
+.menu-footer {
+  margin-top: auto;
+  padding: 12px 8px 16px;
+}
+
+.logout-item {
+  --background: rgba(248, 81, 73, 0.08);
+  --color: #ffb4ae;
+  border: 1px solid rgba(248, 81, 73, 0.2);
+  border-radius: 14px;
+}
+
+ion-item {
+  --background: transparent;
+  --color: #e6edf3;
+  --padding-start: 14px;
+  --inner-padding-end: 14px;
+  margin: 4px 8px;
+  border-radius: 14px;
+
+  &::part(native) {
+    border-radius: 14px;
+  }
+}
+
+ion-badge {
+  border-radius: 999px;
+}
+
+.menu-trigger {
+  --color: #8b949e;
+}

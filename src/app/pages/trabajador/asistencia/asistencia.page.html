@@ -1,0 +1,40 @@
+<ion-content [fullscreen]="true" class="worker-content">
+  <app-header [showMenuButton]="true" title="ASISTENCIA">
+    <ion-button fill="clear" (click)="abrirNotificaciones()">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </ion-button>
+  </app-header>
+
+  <div class="stats-row">
+    <div class="stat-card red">
+      <p class="stat-title">Puntualidad</p>
+      <p class="stat-value">{{ puntualidad }}%</p>
+      <p class="stat-sub">Ultimos 30 dias</p>
+    </div>
+    <div class="stat-card">
+      <p class="stat-title">Horas Totales</p>
+      <p class="stat-value">{{ horasMes }}h</p>
+      <p class="stat-sub">Mes actual</p>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <p class="section-title">Registros recientes</p>
+    <div class="checkin-item" *ngFor="let registro of registros">
+      <div class="date-pill">
+        {{ registro.fecha | date:'dd' }}<br><span>{{ registro.fecha | date:'MMM' }}</span>
+      </div>
+      <div class="checkin-info">
+        <p class="checkin-title">{{ registro.hora }}</p>
+        <p class="checkin-sub">{{ registro.tipo | titlecase }} · {{ registro.metodo || 'manual' }}</p>
+      </div>
+      <span class="status" [class.ok]="registro.estado !== 'tarde'" [class.late]="registro.estado === 'tarde'">
+        {{ registro.estado === 'tarde' ? 'TARDE' : 'A TIEMPO' }}
+      </span>
+    </div>
+  </div>
+
+  <ion-button class="fab" fill="clear" (click)="marcarEntrada()">
+    <ion-icon name="checkmark-circle"></ion-icon>
+  </ion-button>
+</ion-content>

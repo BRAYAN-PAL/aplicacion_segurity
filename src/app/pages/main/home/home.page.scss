@@ -1,0 +1,290 @@
+// ── Paleta base (reutiliza tu paleta existente) ──────────────────────────────
+$dark-bg:      #0d1117;
+$card-bg:      #161b22;
+$card-bg-2:    #1c2128;
+$red-gradient: linear-gradient(135deg, #d31027 0%, #ea384d 100%);
+$text-gray:    #8b949e;
+$border-color: #30363d;
+$green:        #2ea043;
+$yellow:       #d29922;
+$red-accent:   #da3633;
+
+// ── Content background ────────────────────────────────────────────────────────
+.home-content {
+  --background: #{$dark-bg};
+  --padding-top: 0;
+}
+
+
+
+// ── Greeting Header ───────────────────────────────────────────────────────────
+.greeting-header {
+  padding: 20px 20px 16px;
+
+  .greeting-sub {
+    color: $text-gray;
+    font-size: 0.85rem;
+    margin: 0 0 2px;
+    font-weight: 400;
+  }
+
+  .greeting-name {
+    color: #ffffff;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0 0 6px;
+    letter-spacing: -0.3px;
+  }
+
+  .greeting-shift {
+    color: $text-gray;
+    font-size: 0.8rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    ion-icon {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+// ── Card Roja ─────────────────────────────────────────────────────────────────
+.card-red {
+  background: $red-gradient;
+  border-radius: 16px;
+  margin: 0 16px 16px;
+  padding: 18px 20px 16px;
+  box-shadow: 0 6px 24px rgba(211, 16, 39, 0.35);
+  position: relative;
+  overflow: hidden;
+
+  // Círculo decorativo de fondo
+  &::after {
+    content: '';
+    position: absolute;
+    right: -30px;
+    top: -30px;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    pointer-events: none;
+  }
+
+  .card-label {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin: 0 0 4px;
+  }
+
+  .card-main-number {
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+    margin-bottom: 4px;
+
+    .big-number {
+      color: #ffffff;
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .total-number {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 1.3rem;
+      font-weight: 500;
+    }
+  }
+
+  .card-subtitle {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.82rem;
+    margin: 0 0 16px;
+  }
+
+  .card-stats-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+
+    .stat-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .stat-value {
+        color: #ffffff;
+        font-size: 1.3rem;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .stat-label {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.7rem;
+        margin-top: 2px;
+        text-align: center;
+      }
+    }
+
+    .stat-divider {
+      width: 1px;
+      height: 32px;
+      background: rgba(255, 255, 255, 0.25);
+    }
+  }
+}
+
+// ── KPI Pills ─────────────────────────────────────────────────────────────────
+.kpi-row {
+  display: flex;
+  gap: 10px;
+  padding: 0 16px;
+  margin-bottom: 24px;
+
+  .kpi-pill {
+    flex: 1;
+    border-radius: 14px;
+    padding: 12px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    border: 1px solid $border-color;
+    background: $card-bg;
+
+    .kpi-value {
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .kpi-label {
+      font-size: 0.7rem;
+      color: $text-gray;
+    }
+
+    &.kpi-green .kpi-value  { color: #3fb950; }
+    &.kpi-yellow .kpi-value { color: #e3b341; }
+    &.kpi-red .kpi-value    { color: #f85149; }
+  }
+}
+
+// ── Section Header ────────────────────────────────────────────────────────────
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  margin-bottom: 10px;
+
+  .section-title {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .section-link {
+    color: #f85149;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+  }
+}
+
+// ── Agents List ───────────────────────────────────────────────────────────────
+.agents-list {
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .agent-card {
+    background: $card-bg;
+    border-radius: 14px;
+    border: 1px solid $border-color;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .agent-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #ffffff;
+      flex-shrink: 0;
+
+      &.avatar-red    { background: $red-gradient; }
+      &.avatar-blue   { background: linear-gradient(135deg, #0969da, #388bfd); }
+      &.avatar-purple { background: linear-gradient(135deg, #6e40c9, #a371f7); }
+    }
+
+    .agent-info {
+      flex: 1;
+
+      .agent-name {
+        color: #ffffff;
+        font-size: 0.92rem;
+        font-weight: 600;
+        margin: 0 0 2px;
+      }
+
+      .agent-role {
+        color: $text-gray;
+        font-size: 0.75rem;
+        margin: 0;
+      }
+    }
+
+    .badge {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      flex-shrink: 0;
+
+      &.badge-active {
+        background: rgba(46, 160, 67, 0.2);
+        color: #3fb950;
+        border: 1px solid rgba(46, 160, 67, 0.35);
+      }
+
+      &.badge-late {
+        background: rgba(210, 153, 34, 0.2);
+        color: #e3b341;
+        border: 1px solid rgba(210, 153, 34, 0.35);
+      }
+    }
+  }
+}
+
+// ── Custom Tab Bar ────────────────────────────────────────────────────────────
+.custom-tab-bar {
+  --background: #{$card-bg};
+  --border: 1px solid #{$border-color};
+
+  ion-tab-button {
+    --color: #{$text-gray};
+    --color-selected: #f85149;
+    font-size: 0.65rem;
+  }
+
+  .tab-active {
+    --color: #f85149;
+  }
+}

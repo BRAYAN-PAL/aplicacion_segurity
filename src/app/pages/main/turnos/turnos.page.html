@@ -1,0 +1,103 @@
+<ion-content [fullscreen]="true" class="turnos-content">
+  <app-header [showMenuButton]="true" title="TURNOS">
+    <ion-button fill="clear" (click)="openNotifications()">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </ion-button>
+  </app-header>
+
+ <br>
+  <div class="calendar-strip">
+    <button
+      type="button"
+      class="day"
+      *ngFor="let day of calendarDays"
+      [class.active]="day.date === selectedDate"
+      (click)="onDateSelected(day.date)">
+      {{ day.label }}<span>{{ day.dayNumber }}</span>
+    </button>
+  </div>
+
+  <p class="subtitle">{{ selectedDateLabel }} · {{ selectedDayCount }} asignaciones</p>
+
+  <div class="section-card form-card">
+    <p class="section-title-small">Asignar nuevo turno</p>
+
+    <div class="form-grid">
+      <div class="form-row full-width">
+        <label>Trabajador</label>
+        <select [(ngModel)]="selectedEmployeeId" (change)="selectEmployee(selectedEmployeeId)">
+          <option value="" disabled>Selecciona un trabajador</option>
+          <option *ngFor="let employee of employees" [value]="employee.id">
+            {{ employee.nombre }} · {{ employee.puesto || 'Agente' }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label>Inicio</label>
+        <input type="time" [(ngModel)]="selectedStart" />
+      </div>
+
+      <div class="form-row">
+        <label>Fin</label>
+        <input type="time" [(ngModel)]="selectedEnd" />
+      </div>
+
+      <div class="form-row full-width">
+        <label>Sede</label>
+        <input type="text" [(ngModel)]="selectedSede" placeholder="Ej. Sede Central" />
+      </div>
+
+      <div class="form-row full-width">
+        <label>Estado</label>
+        <select [(ngModel)]="selectedStatus">
+          <option value="programado">Programado</option>
+          <option value="activo">Activo</option>
+          <option value="tardanza">Tardanza</option>
+          <option value="descanso">Descanso</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="primary-btn" (click)="saveAssignment()" [disabled]="isSaving">
+      {{ isSaving ? 'Guardando...' : selectedShiftId ? 'Modificar turno' : 'Asignar turno' }}
+    </button>
+
+    <button class="secondary-btn" *ngIf="selectedShiftId" type="button" (click)="clearSelectedShift()">
+      Cancelar edición
+    </button>
+
+    <p class="feedback" *ngIf="message">{{ message }}</p>
+  </div>
+
+  <div class="section-header">
+    <h2 class="section-title-secondary">Turnos del día</h2>
+    <span class="section-count">{{ shiftRows.length }}</span>
+  </div>
+
+  <div class="shift-list" *ngIf="shiftRows.length > 0; else emptyState">
+    <div class="shift-card" *ngFor="let shift of shiftRows" [class.selected]="shift.id === selectedShiftId" (click)="selectShift(shift)">
+      <div class="shift-left">
+        <div class="shift-avatar">{{ initials(shift.employeeName) }}</div>
+        <div class="agent-info">
+          <h3>{{ shift.employeeName }}</h3>
+          <p>{{ shift.inicio }} - {{ shift.fin }} · {{ shift.sede }}</p>
+          <span class="chip">{{ shift.employeeRole }}</span>
+        </div>
+      </div>
+      <div class="shift-right">
+        <span class="status" [ngClass]="statusClass(shift.estado)">{{ statusLabel(shift.estado) }}</span>
+        <div class="shift-actions" *ngIf="shift.id === selectedShiftId">
+          <button type="button" class="action-btn edit" (click)="selectShift(shift); $event.stopPropagation()">Modificar</button>
+          <button type="button" class="action-btn delete" (click)="deleteShift(shift); $event.stopPropagation()">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #emptyState>
+    <div class="empty-state">
+      No hay turnos asignados para esta fecha.
+    </div>
+  </ng-template>
+</ion-content>
